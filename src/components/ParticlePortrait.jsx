@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { sampleImage, createParticleRenderer } from '../lib/particles'
 
 function defaultQuality() {
-  if (typeof window === 'undefined') return 9000
-  return window.matchMedia('(pointer: coarse)').matches ? 5000 : 9000
+  if (typeof window === 'undefined') return 11000
+  return window.matchMedia('(pointer: coarse)').matches ? 6500 : 11000
 }
 
 export default function ParticlePortrait({ src, className, quality }) {
@@ -17,7 +17,7 @@ export default function ParticlePortrait({ src, className, quality }) {
     const count = quality ?? defaultQuality()
     ;(async () => {
       try {
-        const { points, aspect } = await sampleImage(src, { width: 220, count, threshold: 40 })
+        const { points, aspect } = await sampleImage(src, { width: 220, count, threshold: 30 })
         if (cancelled) return
         renderer = createParticleRenderer(canvasRef.current, { points, aspect })
         io = new IntersectionObserver(

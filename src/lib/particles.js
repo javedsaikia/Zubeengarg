@@ -90,25 +90,25 @@ export function createParticleRenderer(canvas, { points, aspect }) {
   const ctx = canvas.getContext('2d')
   const sprites = {
     soft: makeSprite([
-      [0, 'rgba(255,255,255,0.95)'],
-      [0.35, 'rgba(226,216,255,0.65)'],
-      [1, 'rgba(140,110,255,0)'],
+      [0, 'rgba(255,255,255,1)'],
+      [0.4, 'rgba(238,229,255,0.92)'],
+      [1, 'rgba(178,148,255,0)'],
     ]),
     lilac: makeSprite([
-      [0, 'rgba(233,225,255,0.95)'],
-      [0.35, 'rgba(180,150,255,0.6)'],
-      [1, 'rgba(124,92,246,0)'],
+      [0, 'rgba(245,240,255,1)'],
+      [0.4, 'rgba(196,170,255,0.88)'],
+      [1, 'rgba(148,116,255,0)'],
     ]),
     violet: makeSprite([
-      [0, 'rgba(214,199,255,0.9)'],
-      [0.35, 'rgba(150,116,250,0.55)'],
-      [1, 'rgba(106,76,240,0)'],
+      [0, 'rgba(232,219,255,1)'],
+      [0.4, 'rgba(172,142,255,0.82)'],
+      [1, 'rgba(126,96,250,0)'],
     ]),
   }
   const dustSprite = makeSprite(
     [
-      [0, 'rgba(214,200,255,0.6)'],
-      [0.5, 'rgba(150,116,250,0.2)'],
+      [0, 'rgba(224,212,255,0.75)'],
+      [0.5, 'rgba(162,130,255,0.28)'],
       [1, 'rgba(0,0,0,0)'],
     ],
     24,
@@ -196,6 +196,7 @@ export function createParticleRenderer(canvas, { points, aspect }) {
     const zMag = dw * 0.36
     const chest = reduced ? 0 : Math.sin(time * 1.12) * 0.006
 
+    ctx.globalCompositeOperation = 'lighter'
     for (const p of points) {
       let px, py, tw, size
       const rx = (p.x - 0.5) * 2
@@ -205,7 +206,7 @@ export function createParticleRenderer(canvas, { points, aspect }) {
       const zp = (depth - 0.5) * zMag
       const lx = ox + p.x * dw - cX
       const ly = oy + p.y * dh - cY
-      const depthScale = 0.82 + depth * 0.3
+      const depthScale = 0.85 + depth * 0.3
 
       if (reduced) {
         px = cX + lx
@@ -218,11 +219,14 @@ export function createParticleRenderer(canvas, { points, aspect }) {
         const breathe2 = Math.sin(time * 1.7 + p.phase2) * 1.0 * (0.4 + p.depth)
         px = cX + x1 + breathe + mouse.x * (4 + p.depth * 12)
         py = cY + y1 * (1 - chest * (0.3 + depth)) + breathe2 + mouse.y * (3 + p.depth * 9)
-        tw = 0.78 + 0.22 * Math.sin(time * 2.2 + p.phase2)
+        tw = 0.88 + 0.12 * Math.sin(time * 2.2 + p.phase2)
       }
-      size = base * (0.45 + p.depth * 0.45) * (0.6 + p.brightness * 0.5) * tw * depthScale
+      size = base * (0.85 + p.depth * 0.7) * (0.75 + p.brightness * 0.6) * tw * depthScale
+      ctx.globalAlpha = 0.96
       ctx.drawImage(sprites[p.sprite], px - size, py - size, size * 2, size * 2)
     }
+    ctx.globalAlpha = 1
+    ctx.globalCompositeOperation = 'source-over'
 
     raf = requestAnimationFrame(frame)
   }

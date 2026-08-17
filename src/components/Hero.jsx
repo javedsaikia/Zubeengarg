@@ -182,8 +182,8 @@ export default function Hero() {
       <div className="absolute inset-0">
         <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" />
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_52%_46%_at_50%_42%,rgba(124,81,242,0.14),transparent_65%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,0,0,0.88),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_56%_50%_at_50%_42%,rgba(148,110,255,0.22),transparent_62%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,0,0,0.78),transparent_50%)]" />
 
       {FLOAT_ICONS.map((it, i) => (
         <FloatIcon
