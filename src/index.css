@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --color-void: #050308;
+  --color-lav-100: #f5f1ff;
+  --color-lav-200: #e8ddff;
+  --color-lav-300: #d3bbff;
+  --color-lav-400: #b899ff;
+  --color-lav-500: #9d78ff;
+  --color-lav-600: #7d51f2;
+  --color-lav-700: #633cc4;
+  --color-lav-900: #170d2b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #000;
+  color: var(--color-lav-100);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(157, 120, 255, 0.4);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(157, 120, 255, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+@utility glass {
+  background: rgba(9, 5, 18, 0.55);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(157, 120, 255, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
