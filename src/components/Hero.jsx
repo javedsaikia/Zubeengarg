@@ -179,7 +179,7 @@ export default function Hero() {
       onPointerUp={release}
       onPointerCancel={release}
     >
-      <div className="relative z-0 h-[48svh] w-full shrink-0 md:absolute md:inset-0 md:h-full">
+      <div className="relative z-0 h-[70svh] w-full shrink-0 md:absolute md:inset-0 md:h-full">
         <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" alignY={0.12} />
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_56%_50%_at_50%_42%,rgba(148,110,255,0.22),transparent_62%)]" />

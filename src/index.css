@@ -16,12 +16,14 @@
 
 html {
   scroll-behavior: smooth;
+  background: #000;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
   background: #000;
+  overscroll-behavior-y: none;
   color: var(--color-lav-100);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -48,6 +50,7 @@ body {
 
 @utility glass {
   background: rgba(9, 5, 18, 0.55);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(157, 120, 255, 0.14);
 }
