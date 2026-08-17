@@ -86,7 +86,7 @@ export async function sampleImage(src, { width = 220, count = 9000, threshold = 
   return { points, aspect: height / width }
 }
 
-export function createParticleRenderer(canvas, { points, aspect }) {
+export function createParticleRenderer(canvas, { points, aspect, alignY = 0.5 }) {
   const ctx = canvas.getContext('2d')
   const sprites = {
     soft: makeSprite([
@@ -158,7 +158,7 @@ export function createParticleRenderer(canvas, { points, aspect }) {
       dw = dh / aspect
     }
     const ox = (W - dw) / 2
-    const oy = H * 0.03 + (H * 0.94 - dh) / 2
+    const oy = H * 0.03 + (H * 0.94 - dh) * alignY
     return { dw, dh, ox, oy }
   }
 

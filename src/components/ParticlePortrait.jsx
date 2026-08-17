@@ -6,7 +6,7 @@ function defaultQuality() {
   return window.matchMedia('(pointer: coarse)').matches ? 6500 : 11000
 }
 
-export default function ParticlePortrait({ src, className, quality }) {
+export default function ParticlePortrait({ src, className, quality, alignY = 0.5 }) {
   const canvasRef = useRef(null)
   const [ready, setReady] = useState(false)
 
@@ -19,7 +19,7 @@ export default function ParticlePortrait({ src, className, quality }) {
       try {
         const { points, aspect } = await sampleImage(src, { width: 220, count, threshold: 30 })
         if (cancelled) return
-        renderer = createParticleRenderer(canvasRef.current, { points, aspect })
+        renderer = createParticleRenderer(canvasRef.current, { points, aspect, alignY })
         io = new IntersectionObserver(
           ([entry]) => (entry.isIntersecting ? renderer.resume() : renderer.pause()),
           { rootMargin: '240px' },
@@ -35,7 +35,7 @@ export default function ParticlePortrait({ src, className, quality }) {
       if (io) io.disconnect()
       if (renderer) renderer.destroy()
     }
-  }, [src, quality])
+  }, [src, quality, alignY])
 
   return (
     <canvas

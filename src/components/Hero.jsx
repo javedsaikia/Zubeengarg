@@ -171,7 +171,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative h-dvh min-h-[520px] overflow-hidden bg-black"
+      className="relative flex min-h-svh flex-col overflow-hidden bg-black md:block md:h-dvh md:min-h-[640px]"
       onPointerMove={onPointerMove}
       onPointerDown={() => {
         interacting.current = true
@@ -179,8 +179,8 @@ export default function Hero() {
       onPointerUp={release}
       onPointerCancel={release}
     >
-      <div className="absolute inset-0">
-        <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" />
+      <div className="relative z-0 h-[48svh] w-full shrink-0 md:absolute md:inset-0 md:h-full">
+        <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" alignY={0.12} />
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_56%_50%_at_50%_42%,rgba(148,110,255,0.22),transparent_62%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,0,0,0.78),transparent_50%)]" />
@@ -202,7 +202,7 @@ export default function Hero() {
         />
       ))}
 
-      <div className="absolute inset-x-0 bottom-0 z-20 px-6 pb-[calc(4rem+env(safe-area-inset-bottom))] md:px-12 lg:px-20">
+      <div className="relative z-20 px-6 pt-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))] md:absolute md:inset-x-0 md:bottom-0 md:pt-0 md:pb-[calc(4rem+env(safe-area-inset-bottom))] md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="md:max-w-xl">
             <motion.p
@@ -217,7 +217,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.05, duration: 1, ease: EASE }}
-              className="text-6xl font-semibold leading-[0.95] tracking-tight text-white md:text-8xl"
+              className="text-5xl font-semibold leading-[0.95] tracking-tight text-white sm:text-6xl md:text-8xl"
             >
               Zubeen{' '}
               <span className="bg-gradient-to-r from-lav-300 to-lav-500 bg-clip-text font-serif text-transparent italic">
