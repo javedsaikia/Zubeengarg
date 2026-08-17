@@ -13,13 +13,15 @@ export default function Tribute() {
         </Reveal>
         <Reveal delay={0.06}>
           <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl">
-            Carry him <span className="font-serif font-normal text-lav-300 italic">with you.</span>
+            He lives on <span className="font-serif font-normal text-lav-300 italic">in every
+            song.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.12}>
           <p className="mx-auto mt-8 max-w-xl leading-relaxed text-lav-100/60">
-            If a song of his has ever meant something to you — at home, on a long journey, in a
-            quiet moment — it lives on with you. Keep it close.
+            From the valleys of the Brahmaputra to the studios of Mumbai, his voice carried love,
+            unity, and the soul of Assam to every corner of the world. Whether it reached you in a
+            quiet moment or on a long journey home — keep it close, and it stays alive.
           </p>
         </Reveal>
         <Reveal delay={0.18}>

@@ -3,33 +3,48 @@ import Reveal from './Reveal'
 const MILESTONES = [
   {
     year: '1972',
-    title: 'Born in Jorhat, Assam',
-    text: 'A young voice begins — one that would one day be carried across the world.',
+    title: 'Born in Tura, Meghalaya',
+    text: 'Son of the poet Kapil Thakur and the classical singer Ily Borthakur, named after conductor Zubin Mehta — a voice, and a name, chosen with music in mind.',
   },
   {
     year: '1992',
-    title: 'Debut album · Anamika',
-    text: 'His first Assamese album announces a talent the region would never forget.',
+    title: 'Anamika · the new era of Assamese music',
+    text: 'Debut album released at nineteen, fusing folk with rock, pop, and electronic sound — and a gold medal for western solo at the Gauhati University youth festival.',
   },
   {
-    year: '1990s',
-    title: 'The voice of Assamese cinema',
-    text: 'Soundtrack after soundtrack, he became the sound of a generation’s life.',
+    year: '1998',
+    title: 'Bollywood begins',
+    text: 'After the Indipop debut Chandni Raat, his voice enters Hindi cinema with Dil Se and Doli Saja Ke Rakhna.',
+  },
+  {
+    year: '2000',
+    title: 'First feature film · Tumi Mur Mathu Mur',
+    text: 'A milestone for Assamese cinema — he acts, directs, composes, and co-produces a film that re-energises the regional industry.',
+  },
+  {
+    year: '2002',
+    title: 'Wedding to Garima Saikia',
+    text: 'A homesick student in Mumbai, a letter written to the singer she found comfort in, and a love story that lasts a lifetime.',
   },
   {
     year: '2006',
-    title: 'Ya Ali · a nationwide phenomenon',
-    text: 'With Gangster, a single song makes the whole country fall in love with his voice.',
+    title: 'Ya Ali · across the nation',
+    text: 'One song from Gangster carries his voice into every home in India and wins him the GIFA Best Playback Singer award.',
+  },
+  {
+    year: '2008',
+    title: 'National Film Award',
+    text: 'Honoured by the President of India for Best Music Direction for Echoes of Silence at the 55th National Film Awards.',
   },
   {
     year: '2010s',
-    title: '38,000+ songs · 40+ languages',
-    text: 'An unmatched body of work spanning cinema, albums, devotional music and beyond.',
+    title: '20,000+ songs · nearly every Indian language',
+    text: 'A dominant force from Assamese cinema to Bengali Tollywood, with anthem after anthem in Mon Jaai, Mission China, and Kanchanjangha.',
   },
   {
     year: '2025',
     title: 'Rest in peace',
-    text: 'He leaves behind a legacy no silence can touch.',
+    text: 'An entire state stood still to say farewell. His last dream, Roi Roi Binaale — Assam’s first musical — was released in October, as he wished.',
   },
 ]
 

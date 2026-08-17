@@ -9,8 +9,8 @@ export default function Footer() {
           </p>
         </div>
         <div className="text-xs leading-relaxed text-lav-100/35">
-          <p>A digital memorial, made with love.</p>
-          <p className="mt-1">His music remains — listen, and remember.</p>
+          <p>A digital memorial, built on the Zubeen Garg Project.</p>
+          <p className="mt-1">The music remains — listen, and remember Assam.</p>
         </div>
       </div>
     </footer>

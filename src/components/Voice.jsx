@@ -1,13 +1,13 @@
 import Reveal from './Reveal'
 
 const STATS = [
-  { value: '38,000+', label: 'songs recorded' },
-  { value: '40+', label: 'languages sung in' },
+  { value: '20,000+', label: 'songs recorded' },
+  { value: '12+', label: 'Indian languages sung in' },
   { value: '1992', label: 'debut album · Anamika' },
-  { value: '1', label: 'voice of a generation' },
+  { value: '2006', label: 'Ya Ali · GIFA Best Playback Singer' },
 ]
 
-const ROLES = ['Singer', 'Composer', 'Music Director', 'Lyricist', 'Actor', 'Filmmaker', 'Engineer']
+const ROLES = ['Singer', 'Composer', 'Lyricist', 'Music Director', 'Actor', 'Director', 'Filmmaker', 'Humanitarian']
 
 export default function Voice() {
   return (
@@ -28,8 +28,8 @@ export default function Voice() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="max-w-sm text-base leading-relaxed text-lav-100/60">
-              From Assamese ballads to Bollywood anthems, Zubeen Garg's voice crossed borders
-              without ever leaving home.
+              From the Assamese ballads that made him a legend to Ya Ali's national anthem, he sang
+              in nearly every major Indian language — yet his heart always belonged to Assam.
             </p>
           </Reveal>
         </div>

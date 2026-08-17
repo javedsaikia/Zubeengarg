@@ -2,16 +2,16 @@ import Reveal from './Reveal'
 
 const QUOTES = [
   {
-    text: 'His voice carried the Brahmaputra in every note — it was home, wherever you were.',
-    who: 'A listener · Guwahati',
+    text: 'Music is my religion.',
+    who: 'Zubeen Garg',
   },
   {
-    text: "He didn't just sing Assamese music. He made the whole world hear it.",
-    who: 'Music community · Assam',
+    text: 'He was a Janaxilpi, loved by all — not just a legendary singer, but a voice and strong pillar of the Assamese community.',
+    who: 'B.D. · Cultural Enthusiast, the Zubeen Garg Project',
   },
   {
-    text: 'Every song of his is a memory of home. He will never be far.',
-    who: 'A fan · from the diaspora',
+    text: 'His works stand as a living archive of love, rebellion, and compassion.',
+    who: 'the Zubeen Garg Project',
   },
 ]
 
@@ -49,8 +49,8 @@ export default function Legacy() {
         <Reveal delay={0.1}>
           <div className="mx-auto mt-24 max-w-3xl text-center">
             <p className="font-serif text-3xl leading-snug text-lav-200 md:text-4xl">
-              Where words fail, music speaks. <em className="text-lav-300">His</em> will always
-              speak for Assam.
+              Legends don't die — <em className="text-lav-300">they become the rhythm of time
+              itself.</em>
             </p>
           </div>
         </Reveal>

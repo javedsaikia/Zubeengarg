@@ -6,26 +6,28 @@ export default function Intro() {
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
           <p className="mb-6 text-[11px] font-medium uppercase tracking-[0.45em] text-lav-500">
-            In Memoriam
+            A Life of Creation and Compassion
           </p>
         </Reveal>
         <Reveal delay={0.08}>
           <h2 className="font-serif text-4xl leading-tight text-white md:text-6xl">
-            Some voices are born of a place — <em className="text-lav-300">his</em> was the voice of
-            a river, a valley, and a people.
+            Born in Tura, raised across a valley of voices — <em className="text-lav-300">he</em> was
+            Assam's to keep.
           </h2>
         </Reveal>
         <Reveal delay={0.16}>
           <p className="mt-10 text-base leading-relaxed text-lav-100/70 md:text-lg">
-            Zubeen Garg didn't just sing for Assam — he carried it with him everywhere he went. In
-            every note, every language, every stage, he was home. For decades he gave words to the
-            feelings of millions, turning ordinary moments into something eternal.
+            On 18 November 1972, Zubeen Borthakur was born in Tura, Meghalaya — son of Mohini Mohon
+            Borthakur, a poet who wrote as Kapil Thakur, and Ily Borthakur, a classical singer. His
+            father named him after the conductor Zubin Mehta; his mother taught him his first ragas.
+            Postings moved the family from the Barak valley to the Brahmaputra, and every stop left
+            him another language, another rhythm, another song waiting to be sung.
           </p>
         </Reveal>
         <Reveal delay={0.24}>
           <p className="mt-6 text-base leading-relaxed text-lav-100/50 md:text-lg">
-            Today, the music remains. As long as anyone hums his songs, the voice of Assam is still
-            singing.
+            From Bihu to Borgeet to the pop of Bombay, he carried it all home — and the music never
+            left. As long as anyone hums his songs, the voice of Assam is still singing.
           </p>
         </Reveal>
       </div>
