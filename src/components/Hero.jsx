@@ -204,7 +204,7 @@ export default function Hero() {
     >
       <div className="relative z-0 h-[76svh] w-full shrink-0 overflow-hidden md:absolute md:inset-0 md:h-full">
         <motion.div className="h-full w-full" style={{ x: sZoomX, y: sZoomY, scale: sZoomS }}>
-          <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" alignY={0.1} cells={30} pixelAlpha={0.34} />
+          <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" alignY={0.1} cells={34} pixelAlpha={0.38} />
         </motion.div>
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_56%_50%_at_50%_42%,rgba(148,110,255,0.22),transparent_62%)]" />

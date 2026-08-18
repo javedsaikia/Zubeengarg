@@ -204,19 +204,21 @@ export function createParticleRenderer(canvas, { points, aspect, alignY = 0.5, p
 
     const cX = ox + dw / 2
     const cY = oy + dh / 2
-    const base = dw / 228
-    const yaw = Math.sin(time * 0.13) * 0.03 + mouse.x * 0.34
-    const pitch = Math.cos(time * 0.11) * 0.026 + mouse.y * 0.3
+    const base = dw / 620
+    const yaw = Math.sin(time * 0.21) * 0.02 + mouse.x * 0.52
+    const pitch = Math.cos(time * 0.17) * 0.02 + mouse.y * 0.46
     const cosY = Math.cos(yaw)
     const sinY = Math.sin(yaw)
     const cosP = Math.cos(pitch)
     const sinP = Math.sin(pitch)
-    const zMag = dw * 0.36
-    const chest = reduced ? 0 : Math.sin(time * 1.12) * 0.006
+    const zMag = dw * 0.48
+    const sway = reduced ? 0 : Math.sin(time * 0.6) * dw * 0.005
+    const bob = reduced ? 0 : Math.sin(time * 1.02) * dw * 0.006
+    const roll = reduced ? 0 : Math.cos(time * 0.9) * 0.01
 
     ctx.globalCompositeOperation = 'lighter'
     for (const p of points) {
-      let px, py, tw, size
+      let px, py
       const rx = (p.x - 0.5) * 2
       const ry = (p.y - 0.5) * 2.1
       const rad = Math.min(1, Math.sqrt(rx * rx + ry * ry))
@@ -224,23 +226,29 @@ export function createParticleRenderer(canvas, { points, aspect, alignY = 0.5, p
       const zp = (depth - 0.5) * zMag
       const lx = ox + p.x * dw - cX
       const ly = oy + p.y * dh - cY
-      const depthScale = 0.85 + depth * 0.3
+      const depthScale = 0.92 + depth * 0.16
 
       if (reduced) {
         px = cX + lx
         py = cY + ly
-        tw = 1
       } else {
         const x1 = lx * cosY + zp * sinY
         const y1 = ly * cosP - zp * sinP
-        const breathe = Math.sin(time * 1.3 + p.phase) * 1.3 * (0.5 + p.depth)
-        const breathe2 = Math.sin(time * 1.7 + p.phase2) * 1.0 * (0.4 + p.depth)
-        px = cX + x1 + breathe + mouse.x * (4 + p.depth * 12)
-        py = cY + y1 * (1 - chest * (0.3 + depth)) + breathe2 + mouse.y * (3 + p.depth * 9)
-        tw = 0.88 + 0.12 * Math.sin(time * 2.2 + p.phase2)
+        const a1 = Math.atan2(y1, x1) + roll
+        const r1 = Math.hypot(x1, y1)
+        const fx = Math.cos(a1) * r1
+        const fy = Math.sin(a1) * r1
+        const s1 = Math.sin(time * 3.4 + p.phase) * 0.45 * (0.35 + depth)
+        const s2 = Math.cos(time * 2.9 + p.phase2) * 0.4 * (0.35 + depth)
+        px = cX + fx + sway + s1 + mouse.x * (5 + p.depth * 14)
+        py = cY + fy + bob + s2 + mouse.y * (4 + p.depth * 11)
       }
-      size = base * (0.85 + p.depth * 0.7) * (0.75 + p.brightness * 0.6) * tw * depthScale
-      ctx.globalAlpha = 0.96
+      const tw = 0.9 + 0.1 * Math.sin(time * 2.6 + p.phase2)
+      const size = Math.max(
+        0.8,
+        base * (0.65 + p.depth * 0.55) * (0.85 + p.brightness * 0.4) * tw * depthScale,
+      )
+      ctx.globalAlpha = 0.9
       ctx.drawImage(sprites[p.sprite], px - size, py - size, size * 2, size * 2)
     }
     ctx.globalAlpha = 1

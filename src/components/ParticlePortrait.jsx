@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { sampleImage, createParticleRenderer } from '../lib/particles'
 
 function defaultQuality() {
-  if (typeof window === 'undefined') return 11000
-  return window.matchMedia('(pointer: coarse)').matches ? 6500 : 11000
+  if (typeof window === 'undefined') return 16000
+  return window.matchMedia('(pointer: coarse)').matches ? 9500 : 16000
 }
 
 export default function ParticlePortrait({ src, className, quality, alignY = 0.5, pixelAlpha = 0.3, cells = 32 }) {
