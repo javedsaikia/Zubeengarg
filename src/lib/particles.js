@@ -54,9 +54,13 @@ function weightedSample(width, height, weights, cum, total, count) {
   return points
 }
 
-export async function sampleImage(src, { width = 220, count = 9000, threshold = 24, softness = 1 } = {}) {
+export async function sampleImage(
+  src,
+  { width = 220, count = 9000, threshold = 24, softness = 1, cells = 32 } = {},
+) {
   const img = await loadImage(src)
-  const height = Math.max(1, Math.round(width * (img.naturalHeight / Math.max(1, img.naturalWidth))))
+  const ratio = img.naturalHeight / Math.max(1, img.naturalWidth)
+  const height = Math.max(1, Math.round(width * ratio))
   const cv = document.createElement('canvas')
   cv.width = width
   cv.height = height
@@ -83,10 +87,14 @@ export async function sampleImage(src, { width = 220, count = 9000, threshold = 
     const roll = p.brightness + Math.random() * 0.22
     p.sprite = roll > 0.72 ? 'soft' : roll > 0.45 ? 'lilac' : 'violet'
   }
-  return { points, aspect: height / width }
+  const pixel = document.createElement('canvas')
+  pixel.width = cells
+  pixel.height = Math.max(1, Math.round(cells * ratio))
+  pixel.getContext('2d').drawImage(img, 0, 0, pixel.width, pixel.height)
+  return { points, aspect: height / width, pixel }
 }
 
-export function createParticleRenderer(canvas, { points, aspect, alignY = 0.5 }) {
+export function createParticleRenderer(canvas, { points, aspect, alignY = 0.5, pixel = null, pixelAlpha = 0.3 }) {
   const ctx = canvas.getContext('2d')
   const sprites = {
     soft: makeSprite([
@@ -149,16 +157,16 @@ export function createParticleRenderer(canvas, { points, aspect, alignY = 0.5 })
   }
 
   function layout() {
-    const availW = W * 0.9
+    const availW = W * 0.98
     let dw = availW
     let dh = dw * aspect
-    const maxH = H * 0.94
+    const maxH = H * 0.98
     if (dh > maxH) {
       dh = maxH
       dw = dh / aspect
     }
     const ox = (W - dw) / 2
-    const oy = H * 0.03 + (H * 0.94 - dh) * alignY
+    const oy = H * 0.02 + (H * 0.98 - dh) * alignY
     return { dw, dh, ox, oy }
   }
 
@@ -184,9 +192,19 @@ export function createParticleRenderer(canvas, { points, aspect, alignY = 0.5 })
     ctx.globalAlpha = 1
 
     const { dw, dh, ox, oy } = layout()
+
+    if (pixel) {
+      ctx.save()
+      ctx.globalCompositeOperation = 'lighter'
+      ctx.globalAlpha = pixelAlpha
+      ctx.imageSmoothingEnabled = false
+      ctx.drawImage(pixel, ox, oy, dw, dh)
+      ctx.restore()
+    }
+
     const cX = ox + dw / 2
     const cY = oy + dh / 2
-    const base = dw / 240
+    const base = dw / 228
     const yaw = Math.sin(time * 0.13) * 0.03 + mouse.x * 0.34
     const pitch = Math.cos(time * 0.11) * 0.026 + mouse.y * 0.3
     const cosY = Math.cos(yaw)

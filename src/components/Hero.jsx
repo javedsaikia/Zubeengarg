@@ -120,7 +120,14 @@ export default function Hero() {
   const cursorY = useMotionValue(0)
   const springX = useSpring(cursorX, { stiffness: 55, damping: 18, mass: 0.6 })
   const springY = useSpring(cursorY, { stiffness: 55, damping: 18, mass: 0.6 })
+  const zoomX = useMotionValue(0)
+  const zoomY = useMotionValue(0)
+  const zoomS = useMotionValue(1)
+  const sZoomX = useSpring(zoomX, { stiffness: 150, damping: 20 })
+  const sZoomY = useSpring(zoomY, { stiffness: 150, damping: 20 })
+  const sZoomS = useSpring(zoomS, { stiffness: 190, damping: 22 })
   const interacting = useRef(false)
+  const down = useRef(null)
 
   useEffect(() => {
     const coarse = window.matchMedia('(pointer: coarse)').matches
@@ -160,10 +167,26 @@ export default function Hero() {
     const rect = e.currentTarget.getBoundingClientRect()
     cursorX.set((e.clientX - rect.left) / rect.width - 0.5)
     cursorY.set((e.clientY - rect.top) / rect.height - 0.5)
+    if (down.current) {
+      zoomX.set(down.current.sx + (e.clientX - down.current.x) * 0.55)
+      zoomY.set(down.current.sy + (e.clientY - down.current.y) * 0.5)
+    }
+  }
+
+  function onPointerDown(e) {
+    interacting.current = true
+    if (e.pointerType !== 'mouse') {
+      down.current = { x: e.clientX, y: e.clientY, sx: zoomX.get(), sy: zoomY.get() }
+      zoomS.set(1.18)
+    }
   }
 
   function release(e) {
     interacting.current = false
+    down.current = null
+    zoomS.set(1)
+    zoomX.set(0)
+    zoomY.set(0)
     if (!e || e.pointerType !== 'mouse') {
       cursorX.set(0)
       cursorY.set(0)
@@ -175,14 +198,14 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-svh flex-col overflow-hidden bg-black md:block md:h-dvh md:min-h-[640px]"
       onPointerMove={onPointerMove}
-      onPointerDown={() => {
-        interacting.current = true
-      }}
+      onPointerDown={onPointerDown}
       onPointerUp={release}
       onPointerCancel={release}
     >
-      <div className="relative z-0 h-[70svh] w-full shrink-0 md:absolute md:inset-0 md:h-full">
-        <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" alignY={0.12} />
+      <div className="relative z-0 h-[76svh] w-full shrink-0 overflow-hidden md:absolute md:inset-0 md:h-full">
+        <motion.div className="h-full w-full" style={{ x: sZoomX, y: sZoomY, scale: sZoomS }}>
+          <ParticlePortrait src="/portrait.jpeg" className="h-full w-full" alignY={0.1} cells={30} pixelAlpha={0.34} />
+        </motion.div>
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_56%_50%_at_50%_42%,rgba(148,110,255,0.22),transparent_62%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,0,0,0.78),transparent_50%)]" />
